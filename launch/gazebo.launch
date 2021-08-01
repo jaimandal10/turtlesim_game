@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <remap from="cmd_vel" to="my_robot/cmd_vel" />
+    <remap from="odom" to="my_robot/odom" />
+    <param name="localization" command="$(find xacro)/xacro --inorder $(find turtlesim_game)/urdf/robot.urdf.xacro" />
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+    <node name = "spawn_robot" pkg = "gazebo_ros" type = "spawn_model" output = "screen"
+        args = "-param localization -urdf -x 0 -y 0 -z 1 -model my_robot" />
+        
+</launch>
